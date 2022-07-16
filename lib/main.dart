@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:meals/screens/categories_screen.dart';
+import 'package:meals/screens/filter_screen.dart';
+import 'package:meals/screens/meal_detail.dart';
+import 'package:meals/screens/tab_screen.dart';
+import 'package:meals/screens/tab_screen_optional.dart';
 import 'package:meals/widgets/category_meals.dart';
 import 'package:meals/utils/routes.dart';
 
@@ -18,6 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.indigo,
         canvasColor: const Color.fromRGBO(255, 254, 229, 1),
+        accentColor: Colors.yellowAccent,
         fontFamily: 'Raleway',
         textTheme: ThemeData.light().textTheme.copyWith(
               bodyText1: const TextStyle(
@@ -27,6 +32,7 @@ class MyApp extends StatelessWidget {
               ),
               bodyText2: const TextStyle(
                 color: Color.fromRGBO(21, 51, 51, 1),
+                fontWeight: FontWeight.bold,
               ),
               headline1: const TextStyle(
                 fontSize: 24,
@@ -37,8 +43,11 @@ class MyApp extends StatelessWidget {
             ),
       ),
       routes: {
+        tabRoute: (context) => TabScreenOptional(),
         homeRoute: (context) => const HomePage(),
         categoryMealRoute: (context) => const CategoryMeals(),
+        mealDetailRoute: (context) => const MealDetail(),
+        filterRoute: (context) => const FilterScreen(),
       },
     );
   }
@@ -54,16 +63,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Meals App',
-          style: Theme.of(context).textTheme.headline1,
-        ),
-        centerTitle: true,
-        elevation: 0.0,
-      ),
-      body: const Padding(
+    return const Scaffold(
+      body: Padding(
         padding: EdgeInsets.all(10.0),
         child: CategoryScreen(),
       ),
