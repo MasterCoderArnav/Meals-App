@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import '../models/meal.dart';
 
 class MealDetail extends StatelessWidget {
-  const MealDetail({Key? key}) : super(key: key);
+  final Function addFavourite;
+  final Function isFavourite;
+  const MealDetail(
+      {Key? key, required this.addFavourite, required this.isFavourite})
+      : super(key: key);
 
   Widget buildSectionTitle(BuildContext context, String title) {
     return Container(
@@ -93,6 +97,14 @@ class MealDetail extends StatelessWidget {
               context,
             )
           ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          addFavourite(meal.id);
+        },
+        child: Icon(
+          isFavourite(meal.id) ? Icons.star : Icons.star_border,
         ),
       ),
     );
